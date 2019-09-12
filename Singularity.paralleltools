@@ -3,7 +3,7 @@ From: ubuntu:16.04
 
 %labels
   maintainer Dominik Handler <Dominik Handler@imba.oeaw.ac.at  
-  gnu-parallel v0.6.4 + other tools required within parallel   
+  gnu-parallel v0.6.4 + other tools required within parallel 
 
 %post    
   apt-get update
