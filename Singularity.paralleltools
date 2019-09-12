@@ -52,7 +52,13 @@ From: ubuntu:16.04
   cd /
   wget https://github.com/wtsi-npg/illumina2bam/releases/download/V1.19/Illumina2bam-tools-V1.19.zip
   unzip Illumina2bam-tools-V1.19.zip
+  chmod 777 /Illumina2bam-tools-V1.19/*
 
+  #install seqkit
+  cd /
+  wget --no-check-certificate --content-disposition https://github.com/shenwei356/seqkit/releases/download/v0.11.0-dev/seqkit_linux_amd64.tar.gz
+  tar -zxvf seqkit_linux_amd64.tar.gz
+  mv /seqkit /usr/local/bin/
 
   #clean up and make container smaller
   apt-get update
