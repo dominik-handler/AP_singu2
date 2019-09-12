@@ -9,11 +9,11 @@ From: ubuntu:16.04
 
 
 %runscript
-    bedtools "$@"
+    "$@"
 
 %post
     apt-get update
-    apt-get --assume-yes install wget tar bzip2
+    apt-get --assume-yes install wget tar bzip2 libxml-libxml-perl
 
     cd /
     wget http://ftp-trace.ncbi.nlm.nih.gov/sra/sdk/2.10.0/sratoolkit.2.10.0-ubuntu64.tar.gz
