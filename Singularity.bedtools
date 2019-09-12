@@ -13,7 +13,7 @@ From: ubuntu:16.04
 
 %post
     apt-get update
-    apt-get --assume-yes install wget tar build-essential zlib1g-dev libbz2-dev liblzma-dev
+    apt-get --assume-yes install wget tar build-essential zlib1g-dev libbz2-dev liblzma-dev python3-dev
 
     cd /
     wget --no-check-certificate --content-disposition https://github.com/arq5x/bedtools2/releases/download/v2.29.0/bedtools-2.29.0.tar.gz
