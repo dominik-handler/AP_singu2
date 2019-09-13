@@ -18,7 +18,7 @@ From: ubuntu:16.04
 
   #install all required tools
   apt-get update
-  apt-get -y install parallel wget build-essential bzip2 python3-dev python3-setuptools unzip default-jre mawk
+  apt-get -y install parallel wget build-essential bzip2 python3-dev python3-setuptools unzip default-jre
 
   #install samtools
     apt-get update
@@ -55,13 +55,13 @@ From: ubuntu:16.04
     wget https://github.com/wtsi-npg/illumina2bam/releases/download/V1.19/Illumina2bam-tools-V1.19.zip
     unzip Illumina2bam-tools-V1.19.zip
     chmod 777 /install/Illumina2bam-tools-V1.19/*
-    mv /Illumina2bam-tools-V1.19/* /usr/local/bin/
+    mv Illumina2bam-tools-V1.19/* /usr/local/bin/
 
   #install seqkit
     cd /install
     wget --no-check-certificate --content-disposition https://github.com/shenwei356/seqkit/releases/download/v0.11.0-dev/seqkit_linux_amd64.tar.gz
     tar -zxf seqkit_linux_amd64.tar.gz
-    mv /seqkit /usr/local/bin/
+    mv seqkit /usr/local/bin/
 
   #install bbtools
     cd /install
@@ -74,6 +74,15 @@ From: ubuntu:16.04
     wget http://ftp-trace.ncbi.nlm.nih.gov/sra/sdk/2.10.0/sratoolkit.2.10.0-ubuntu64.tar.gz
     tar -xzf sratoolkit.2.10.0-ubuntu64.tar.gz
     mv sratoolkit.2.10.0-ubuntu64/bin/* /usr/local/bin/
+
+  #install mawk v1.3.4
+    cd /install
+    wget https://invisible-island.net/datafiles/release/mawk.tar.gz
+    tar -xzf mawk.tar.gz
+    cd mawk-1.3.4-20190203
+    ./configure
+    make
+    make install
 
   #clean up and make container smaller
     apt-get update
