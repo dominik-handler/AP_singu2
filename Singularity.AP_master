@@ -54,7 +54,7 @@ From: ubuntu:16.04
     cd /install/
     wget https://github.com/wtsi-npg/illumina2bam/releases/download/V1.19/Illumina2bam-tools-V1.19.zip
     unzip Illumina2bam-tools-V1.19.zip
-    chmod 777 /Illumina2bam-tools-V1.19/*
+    chmod 777 /install/Illumina2bam-tools-V1.19/*
     mv /Illumina2bam-tools-V1.19/* /usr/local/bin/
 
   #install seqkit
@@ -78,8 +78,8 @@ From: ubuntu:16.04
   #clean up and make container smaller
     apt-get update
     apt-get -y remove --auto-remove build-essential make gcc 
+    rm -rf /install
   
-
 %environment
   #!/bin/bash
   export LANG=en_US.UTF-8  
