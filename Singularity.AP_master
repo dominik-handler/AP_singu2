@@ -45,7 +45,7 @@ From: ubuntu:16.04
 
 
   #install cutadapt
-    wget "https://bootstrap.pypa.io/get-pip.py" 
+    wget https://bootstrap.pypa.io/get-pip.py
     python3 get-pip.py
     pip3 install setuptools --upgrade
     pip3 install cutadapt
@@ -65,8 +65,8 @@ From: ubuntu:16.04
 
   #install bbtools
     cd /install
-    wget https://sourceforge.net/projects/bbmap/files/BBMap_38.67.tar.gz/download
-    tar -zxf BBMap_38.67.tar.gz
+    wget -O BBMap.tar.gz https://sourceforge.net/projects/bbmap/files/BBMap_38.67.tar.gz/download
+    tar -zxf BBMap.tar.gz 
     mv bbmap/* /usr/local/bin/
 
   #install sra-toolkit
