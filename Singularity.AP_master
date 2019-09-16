@@ -18,7 +18,7 @@ From: ubuntu:16.04
 
   #install all required tools
   apt-get update
-  apt-get -y install parallel wget build-essential bzip2 python3-dev python3-setuptools python-dev unzip default-jre gawk
+  apt-get -y install parallel wget build-essential bzip2 python3-dev python3-setuptools python-dev unzip default-jre gawk curl
 
   #install samtools
     apt-get update
