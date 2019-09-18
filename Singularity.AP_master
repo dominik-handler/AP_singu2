@@ -47,8 +47,8 @@ From: ubuntu:16.04
 
   #install bedtools
     cd /install
-    wget --no-check-certificate --content-disposition https://github.com/arq5x/bedtools2/releases/download/v2.29.0/bedtools-2.29.0.tar.gz
-    tar -zxf bedtools-2.29.0.tar.gz
+    wget --no-check-certificate --content-disposition https://github.com/arq5x/bedtools2/releases/download/v2.28.0/bedtools-2.28.0.tar.gz
+    tar -zxf bedtools-2.28.0.tar.gz
     cd bedtools2
     make
     make install
