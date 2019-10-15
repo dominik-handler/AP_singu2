@@ -3,7 +3,7 @@ From: ubuntu:16.04
 
 %labels
   maintainer Dominik Handler <Dominik Handler@imba.oeaw.ac.at  
-  gnu-parallel v0.6.4 + other tools required within parallel 
+  all tools required for the AnnotationPipeline
 
 %post    
   apt-get update
@@ -18,28 +18,28 @@ From: ubuntu:16.04
 
   #install all required tools
   apt-get update
-  apt-get -y install parallel wget build-essential bzip2 python3-dev python3-setuptools python-dev unzip default-jre gawk curl
+  apt-get -y install parallel wget build-essential bzip2 python3-dev python3-setuptools python-dev unzip default-jre gawk curl cmake git-core autoconf 
 
   #install samtools
-    apt-get update
-    apt-get --assume-yes install gcc make libbz2-dev zlib1g-dev libncurses5-dev libncursesw5-dev liblzma-dev tar 
+    apt-get --assume-yes install gcc make libbz2-dev zlib1g-dev libncurses5-dev libncursesw5-dev liblzma-dev tar libpng-dev uuid-dev
+    apt-get clean
 
     cd /install
-    wget https://github.com/samtools/htslib/releases/download/1.9/htslib-1.9.tar.bz2
+    wget --quiet  https://github.com/samtools/htslib/releases/download/1.9/htslib-1.9.tar.bz2
     tar -xjf htslib-1.9.tar.bz2
     cd htslib-1.9
     make
     make install
 
     cd /install
-    wget https://github.com/samtools/samtools/releases/download/1.9/samtools-1.9.tar.bz2
+    wget --quiet  https://github.com/samtools/samtools/releases/download/1.9/samtools-1.9.tar.bz2
     tar -xjf samtools-1.9.tar.bz2
     cd samtools-1.9
     make   
     make install
 
     cd /install
-    wget https://github.com/samtools/bcftools/releases/download/1.9/bcftools-1.9.tar.bz2
+    wget --quiet  https://github.com/samtools/bcftools/releases/download/1.9/bcftools-1.9.tar.bz2
     tar -xjf bcftools-1.9.tar.bz2
     cd bcftools-1.9
     make
@@ -47,58 +47,102 @@ From: ubuntu:16.04
 
   #install bedtools
     cd /install
-    wget --no-check-certificate --content-disposition https://github.com/arq5x/bedtools2/releases/download/v2.28.0/bedtools-2.28.0.tar.gz
+    wget --quiet  --no-check-certificate --content-disposition https://github.com/arq5x/bedtools2/releases/download/v2.28.0/bedtools-2.28.0.tar.gz
     tar -zxf bedtools-2.28.0.tar.gz
     cd bedtools2
     make
     make install
 
   #install cutadapt
-    wget https://bootstrap.pypa.io/get-pip.py
+    wget --quiet  https://bootstrap.pypa.io/get-pip.py
     python3 get-pip.py
     pip3 install setuptools --upgrade
     pip3 install cutadapt
     
   #install illumina2bam
     cd /install/
-    wget https://github.com/wtsi-npg/illumina2bam/releases/download/V1.19/Illumina2bam-tools-V1.19.zip
+    wget --quiet  https://github.com/wtsi-npg/illumina2bam/releases/download/V1.19/Illumina2bam-tools-V1.19.zip
     unzip Illumina2bam-tools-V1.19.zip
     chmod 777 /install/Illumina2bam-tools-V1.19/*
     mv Illumina2bam-tools-V1.19/* /usr/local/bin/
 
   #install seqkit
     cd /install
-    wget --no-check-certificate --content-disposition https://github.com/shenwei356/seqkit/releases/download/v0.11.0-dev/seqkit_linux_amd64.tar.gz
+    wget --quiet  --no-check-certificate --content-disposition https://github.com/shenwei356/seqkit/releases/download/v0.11.0-dev/seqkit_linux_amd64.tar.gz
     tar -zxf seqkit_linux_amd64.tar.gz
     mv seqkit /usr/local/bin/
 
   #install bbtools
     cd /install
-    wget -O BBMap.tar.gz https://sourceforge.net/projects/bbmap/files/BBMap_38.67.tar.gz/download
+    wget --quiet  -O BBMap.tar.gz https://sourceforge.net/projects/bbmap/files/BBMap_38.67.tar.gz/download
     tar -zxf BBMap.tar.gz 
     mv bbmap/* /usr/local/bin/
 
   #install sra-toolkit
     cd /install
-    wget http://ftp-trace.ncbi.nlm.nih.gov/sra/sdk/2.10.0/sratoolkit.2.10.0-ubuntu64.tar.gz
+    wget --quiet  http://ftp-trace.ncbi.nlm.nih.gov/sra/sdk/2.10.0/sratoolkit.2.10.0-ubuntu64.tar.gz
     tar -xzf sratoolkit.2.10.0-ubuntu64.tar.gz
     mv sratoolkit.2.10.0-ubuntu64/bin/* /usr/local/bin/
 
   #install mawk v1.3.4
     cd /install
-    wget https://invisible-island.net/datafiles/release/mawk.tar.gz
+    wget --quiet  https://invisible-island.net/datafiles/release/mawk.tar.gz
     tar -xzf mawk.tar.gz
     cd mawk-1.3.4-20190203
     ./configure
     make
     rm -rf /usr/bin/mawk
     cp mawk /usr/bin/
+  
+  #install bowtie v1.2.3
+    cd /install
+    wget --quiet  -O bowtie.zip https://sourceforge.net/projects/bowtie-bio/files/bowtie/1.2.3/bowtie-1.2.3-linux-x86_64.zip/download
+    unzip bowtie.zip
+    cp bowtie-1.2.3-linux-x86_64/bowtie* /usr/local/bin/
+
+  #install STAR
+    cd /install
+    git clone https://github.com/alexdobin/STAR.git
+    cd STAR/source && make
+    cp /install/STAR/bin/Linux_x86_64/* /usr/local/bin/
+
+  #kentUCSC
+    apt-get update
+    apt-get --assume-yes install mysql-client libssl-dev openssl libmysqlclient-dev  
+    apt-get clean  
+    
+    cd /install
+    wget --quiet  http://hgdownload.soe.ucsc.edu/admin/exe/userApps.v388.src.tgz
+    tar zxf userApps.v388.src.tgz 
+    cd userApps
+    make
+    mv bin/* /usr/local/bin/
+    
+  #salmon
+    cd /install
+    wget  https://github.com/COMBINE-lab/salmon/archive/v0.10.2.tar.gz
+    tar zxf v0.10.2.tar.gz 
+    cd salmon-0.10.2 
+    mkdir build
+    cd build
+    cmake -DFETCH_BOOST=TRUE -DCMAKE_INSTALL_PREFIX=/usr/local/ ..
+    make
+    make install
+    
+    #install homer
+    apt-get update
+    apt-get -y install perl
+    apt-get clean
+
+    mkdir -p /install/homer/
+    cd /install/homer
+    wget --quiet  http://homer.ucsd.edu/homer/configureHomer.pl
+    perl /install/homer/configureHomer.pl -install
+    cp /install/homer/bin/* /usr/local/bin/
 
   #clean up and make container smaller
-    apt-get update
-    apt-get -y remove --auto-remove build-essential make gcc 
     rm -rf /install
-  
+   
 %environment
   #!/bin/bash
   export LANG=en_US.UTF-8  
