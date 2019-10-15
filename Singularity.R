@@ -34,7 +34,6 @@ From: ubuntu:16.04
 
     make
     make install
-    rm -rf /install/*
 
     #install R-packages  
     R --slave -e 'install.packages(c( "devtools"), repos = "http://cran.wu.ac.at/") '
