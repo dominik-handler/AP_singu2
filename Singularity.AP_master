@@ -136,7 +136,7 @@ From: ubuntu:16.04
     cd /install/homer
     wget --quiet  http://homer.ucsd.edu/homer/configureHomer.pl
     perl /install/homer/configureHomer.pl -install
-    cp /install/homer/bin/* /usr/local/bin/
+    cp -r /install/homer/bin/* /usr/local/bin/
 
   #clean up and make container smaller
     rm -rf /install
