@@ -18,7 +18,7 @@ From: ubuntu:16.04
 
   #install all required tools
   apt-get update
-  apt-get -y install parallel wget build-essential bzip2 python3-dev python3-setuptools python-dev unzip default-jre gawk curl cmake git-core autoconf 
+  apt-get -y install parallel wget build-essential bzip2 python3-dev python3-setuptools python-dev unzip zip default-jre gawk curl cmake git-core autoconf 
 
   #install samtools
     apt-get --assume-yes install gcc make libbz2-dev zlib1g-dev libncurses5-dev libncursesw5-dev liblzma-dev tar libpng-dev uuid-dev
