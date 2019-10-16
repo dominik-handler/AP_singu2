@@ -8,17 +8,18 @@ From: ubuntu:16.04
 %post    
   apt-get update
   apt-get -y install locales
+
   locale-gen en_US.UTF-8
 
   export LANG=en_US.UTF-8  
   export LANGUAGE=en_US:en  
-  export LC_ALL=en_US.UTF-8  
-
+  export LC_ALL=C
   mkdir /install
 
   #install all required tools
   apt-get update
-  apt-get -y install parallel wget build-essential bzip2 python3-dev python3-setuptools python-dev unzip zip default-jre gawk curl cmake git-core autoconf 
+  apt-get -y install parallel wget build-essential bzip2 python3-dev python3-setuptools python-dev unzip zip default-jre gawk curl cmake git-core autoconf zlib1g-dev 
+  libxml2-dev perl libxml-libxml-perl
 
   #install samtools
     apt-get --assume-yes install gcc make libbz2-dev zlib1g-dev libncurses5-dev libncursesw5-dev liblzma-dev tar libpng-dev uuid-dev
@@ -79,9 +80,9 @@ From: ubuntu:16.04
 
   #install sra-toolkit
     cd /install
-    wget --quiet  http://ftp-trace.ncbi.nlm.nih.gov/sra/sdk/2.10.0/sratoolkit.2.10.0-ubuntu64.tar.gz
-    tar -xzf sratoolkit.2.10.0-ubuntu64.tar.gz
-    mv sratoolkit.2.10.0-ubuntu64/bin/* /usr/local/bin/
+    wget --quiet  http://ftp-trace.ncbi.nlm.nih.gov/sra/sdk/2.9.6/sratoolkit.2.9.6-ubuntu64.tar.gz
+    tar -xzf sratoolkit.2.9.6-ubuntu64.tar.gz
+    mv sratoolkit.2.9.6-ubuntu64/bin/* /usr/local/bin/
 
   #install mawk v1.3.4
     cd /install
@@ -132,11 +133,10 @@ From: ubuntu:16.04
     apt-get update
     apt-get -y install perl
 
-    mkdir -p /install/homer/
-    cd /install/homer
+    mkdir -p /homer/
+    cd /homer
     wget --quiet  http://homer.ucsd.edu/homer/configureHomer.pl
-    perl /install/homer/configureHomer.pl -install
-    cp -r /install/homer/bin/* /usr/local/bin/
+    perl /homer/configureHomer.pl -install
 
   #clean up and make container smaller
     rm -rf /install
@@ -145,7 +145,8 @@ From: ubuntu:16.04
   #!/bin/bash
   export LANG=en_US.UTF-8  
   export LANGUAGE=en_US:en  
-  export LC_ALL=en_US.UTF-8  
+  export LC_ALL=C
+  export PATH=/homer/bin:$PATH
 
 %runscript
   $@
