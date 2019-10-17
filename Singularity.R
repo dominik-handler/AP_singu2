@@ -17,8 +17,10 @@ From: ubuntu:16.04
   mkdir /install
 
   #install all required tools
+  DEBIAN_FRONTEND=noninteractive
   apt-get update
-  apt-get -y install parallel wget build-essential bzip2 unzip git-core tar libbz2-dev
+  apt-get -y install parallel wget build-essential bzip2 unzip git-core tar libbz2-dev tzdata
+  
       
   #install R
     apt-get update
