@@ -19,7 +19,7 @@ From: ubuntu:16.04
   #install all required tools
   DEBIAN_FRONTEND=noninteractive
   apt-get update
-  apt-get -y install parallel wget build-essential bzip2 unzip git-core tar libbz2-dev tzdata
+  apt-get -y install parallel wget build-essential bzip2 unzip git-core tar libbz2-dev tzdata unzip
   
       
   #install R
@@ -46,6 +46,12 @@ From: ubuntu:16.04
     R --slave -e 'library(BiocManager); BiocManager::install("remotes"); BiocManager::install("pachterlab/sleuth@v0.30.0")'
     R --slave -e 'library(BiocManager); BiocManager::install("rhdf5")'
     R --slave -e 'library(BiocManager); BiocManager::install("COMBINE-lab/wasabi")'
+
+  #install PingPongPro
+  VERSION="v1.0"
+  curl -L -o /install/pingpongpro-${VERSION}.zip https://github.com/suhrig/pingpongpro/releases/download/${VERSION}/pingpongpro-${VERSION}.zip
+  unzip /install/pingpongpro-${VERSION}.zip
+  mv /install/pingpongpro-v1.0/bin/linux/x86_64/pingpongpro /usr/local/bin/
 
   #clean up and make container smaller
     rm -rf /install
