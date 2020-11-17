@@ -3,7 +3,7 @@ From: ubuntu:16.04
 
 %labels
   maintainer Dominik Handler <Dominik Handler@imba.oeaw.ac.at  
-  all tools required for the AnnotationPipeline test
+  all tools required for the AnnotationPipeline
 
 %post    
   apt-get update
@@ -19,6 +19,13 @@ From: ubuntu:16.04
   #install all required tools
   apt-get update
   apt-get -y install parallel wget build-essential bzip2 python3-dev python3-setuptools python-dev unzip zip default-jre gawk curl cmake git-core autoconf zlib1g-dev 
+
+  #install enaTools
+  cd /
+  wget --no-check-certificate --content-disposition  https://github.com/enasequence/enaBrowserTools/archive/v1.6.tar.gz
+  tar -zxf enaBrowserTools-1.6.tar.gz
+  rm -rf enaBrowserTools-1.6.tar.gz
+  mv enaBrowserTools-1.6 enaBrowserTools
 
   #install samtools
     apt-get --assume-yes install gcc make libbz2-dev zlib1g-dev libncurses5-dev libncursesw5-dev liblzma-dev tar libpng-dev uuid-dev
@@ -146,7 +153,8 @@ From: ubuntu:16.04
   export LANGUAGE=en_US:en  
   export LC_ALL=C
   export PATH=/homer/bin:$PATH
+  alias enaDataGet=/enaBrowserTools/python3/enaDataGet
+  alias enaGroupGet=/enaBrowserTools/python3/enaGroupGet
 
 %runscript
   $@
-
