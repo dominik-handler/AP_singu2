@@ -5,7 +5,7 @@ From: ubuntu:18.04
   maintainer Dominik Handler <Dominik Handler@imba.oeaw.ac.at  
   all tools required for the AnnotationPipeline
 
-%post    
+%post   
   apt-get update
   apt-get -y install locales software-properties-common
 
