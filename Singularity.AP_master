@@ -29,7 +29,7 @@ From: ubuntu:18.04
 
   #install enaTools
   cd /
-  pip3 install chardet certifi
+  pip3 install chardet certifi requests
   wget --no-check-certificate --content-disposition  https://github.com/enasequence/enaBrowserTools/archive/v1.6.tar.gz
   tar -zxf enaBrowserTools-1.6.tar.gz
   rm -rf enaBrowserTools-1.6.tar.gz
