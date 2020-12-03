@@ -23,7 +23,7 @@ From: ubuntu:18.04
   apt-get update
   apt-get -y install parallel wget build-essential bzip2 python3-dev python3-setuptools python-dev unzip zip default-jre gawk curl cmake git-core autoconf zlib1g-dev rsync 
   
-  wget --quiet  https://bootstrap.pypa.io/get-pip.py
+  wget --quiet --no-check-certificate --content-disposition  https://bootstrap.pypa.io/get-pip.py
   python3 get-pip.py
   pip3 install setuptools --upgrade
 
@@ -39,21 +39,21 @@ From: ubuntu:18.04
     apt-get --assume-yes install gcc make libbz2-dev zlib1g-dev libncurses5-dev libncursesw5-dev liblzma-dev tar libpng-dev uuid-dev
 
     cd /install
-    wget --quiet  https://github.com/samtools/htslib/releases/download/1.9/htslib-1.9.tar.bz2
+    wget --quiet --no-check-certificate --content-disposition  https://github.com/samtools/htslib/releases/download/1.9/htslib-1.9.tar.bz2
     tar -xjf htslib-1.9.tar.bz2
     cd htslib-1.9
     make
     make install
 
     cd /install
-    wget --quiet  https://github.com/samtools/samtools/releases/download/1.9/samtools-1.9.tar.bz2
+    wget --quiet --no-check-certificate --content-disposition  https://github.com/samtools/samtools/releases/download/1.9/samtools-1.9.tar.bz2
     tar -xjf samtools-1.9.tar.bz2
     cd samtools-1.9
     make   
     make install
 
     cd /install
-    wget --quiet  https://github.com/samtools/bcftools/releases/download/1.9/bcftools-1.9.tar.bz2
+    wget --quiet --no-check-certificate --content-disposition  https://github.com/samtools/bcftools/releases/download/1.9/bcftools-1.9.tar.bz2
     tar -xjf bcftools-1.9.tar.bz2
     cd bcftools-1.9
     make
@@ -72,7 +72,7 @@ From: ubuntu:18.04
     
   #install illumina2bam
     cd /install/
-    wget --quiet  https://github.com/wtsi-npg/illumina2bam/releases/download/V1.19/Illumina2bam-tools-V1.19.zip
+    wget --quiet  --no-check-certificate --content-disposition https://github.com/wtsi-npg/illumina2bam/releases/download/V1.19/Illumina2bam-tools-V1.19.zip
     unzip Illumina2bam-tools-V1.19.zip
     chmod 777 /install/Illumina2bam-tools-V1.19/*
     mv Illumina2bam-tools-V1.19/* /usr/local/bin/
@@ -85,19 +85,19 @@ From: ubuntu:18.04
 
   #install bbtools
     cd /install
-    wget --quiet  -O BBMap.tar.gz https://sourceforge.net/projects/bbmap/files/latest/download
+    wget --quiet --no-check-certificate --content-disposition  -O BBMap.tar.gz https://sourceforge.net/projects/bbmap/files/latest/download
     tar -zxf BBMap.tar.gz 
     mv bbmap/* /usr/local/bin/
 
   #install sra-toolkit
     cd /install
-    wget --quiet  http://ftp-trace.ncbi.nlm.nih.gov/sra/sdk/2.9.6/sratoolkit.2.9.6-ubuntu64.tar.gz
+    wget --quiet  --no-check-certificate --content-disposition https://ftp-trace.ncbi.nlm.nih.gov/sra/sdk/2.10.8/sratoolkit.2.10.8-ubuntu64.tar.gz
     tar -xzf sratoolkit.2.9.6-ubuntu64.tar.gz
     mv sratoolkit.2.9.6-ubuntu64/bin/* /usr/local/bin/
 
   #install mawk v1.3.4
     cd /install
-    wget --quiet  https://invisible-island.net/datafiles/release/mawk.tar.gz
+    wget --quiet  --no-check-certificate --content-disposition  https://invisible-island.net/datafiles/release/mawk.tar.gz
     tar -xzf mawk.tar.gz
     cd mawk*
     ./configure
@@ -107,7 +107,7 @@ From: ubuntu:18.04
   
   #install bowtie v1.2.3
     cd /install
-    wget --quiet  -O bowtie.zip https://sourceforge.net/projects/bowtie-bio/files/bowtie/1.2.3/bowtie-1.2.3-linux-x86_64.zip/download
+    wget --quiet  --no-check-certificate --content-disposition -O bowtie.zip https://sourceforge.net/projects/bowtie-bio/files/bowtie/1.2.3/bowtie-1.2.3-linux-x86_64.zip/download
     unzip bowtie.zip
     cp bowtie-1.2.3-linux-x86_64/bowtie* /usr/local/bin/
 
@@ -134,7 +134,7 @@ From: ubuntu:18.04
     echo "deb http://cz.archive.ubuntu.com/ubuntu eoan main universe" |  tee -a  /etc/apt/sources.list
     apt update
     apt-get --assume-yes install libtbb-dev
-    wget  https://github.com/COMBINE-lab/salmon/archive/v0.10.2.tar.gz
+    wget --no-check-certificate --content-disposition  https://github.com/COMBINE-lab/salmon/archive/v0.10.2.tar.gz
     tar zxf v0.10.2.tar.gz 
     cd salmon-0.10.2 
     mkdir build
